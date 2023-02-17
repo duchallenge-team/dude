@@ -85,7 +85,7 @@ Run `docile_evaluate --help` for more information on the options. You can also r
 Predictions need to be stored in a single json file (for each task separately) containing a mapping from `docid` to the 'questionId' predictions for that document, i.e.:
 ```json
 
-[{'questionId': '0017b64bd017f06db47e56a6a113e22e_bb55e0af451429f2dcae69e6d0713616',
+{'questionId': '0017b64bd017f06db47e56a6a113e22e_bb55e0af451429f2dcae69e6d0713616',
   'question': 'What is the first and last name of the indvidual in list # 539?',
   'answers': ['Ajay Dev Goud'],
   'answers_page_bounding_boxes': [[{'left': 353,
@@ -97,7 +97,6 @@ Predictions need to be stored in a single json file (for each task separately) c
   'answer_type': 'extractive',
   'docId': '0017b64bd017f06db47e56a6a113e22e',
   'data_split': 'train'}
-]
 ```
 Explanation of the individual fields of the predictions:
   * `page`: page index (from zero) the prediction belongs to
