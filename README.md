@@ -7,12 +7,12 @@ Repository to work with the [DUDE benchmark](https://rrc.cvc.uab.es/?ch=23&com=i
 The competition deadline is on April 20, 2023 and comes with a **$1000 prize pool**.
 
 The repository consists of:
-* A python library, `dude`, making it easy to load the dataset, work with its annotations, pdfs and pre-computed OCR and run the evaluation.
+* A framework, `dude`, making it easy to load the dataset, work with its annotations, pdfs and pre-computed OCR and run the evaluation.
 * An interactive [dataset browser notebook](dude/tools/dataset_notebook.ipynb) to visualize the document annotations, predictions and evaluation results.
 * Baseline methods (will appear soon).
 
 Table of Contents:
-* [Download the dataset](#download-the-dataset)
+* [Download instructions](#download-dude)
 * [Installation](#installation)
 * [Predictions format and running evaluation](#predictions-format-and-running-evaluation)
 * [Pre-computed OCR](#pre-computed-ocr)
@@ -82,24 +82,22 @@ docile_evaluate \
 
 Run `docile_evaluate --help` for more information on the options. You can also run `docile_print_evaluation_report --evaluation-result-path LIR_val_eval.json` to print the results of a previously computed evaluation.
 
-Predictions need to be stored in a single json file (for each task separately) containing a mapping from `docid` to the predictions for that document, i.e.:
+Predictions need to be stored in a single json file (for each task separately) containing a mapping from `docid` to the 'questionId' predictions for that document, i.e.:
 ```json
-{
-    "docid1": [
-        {
-            "page": 0,
-            "bbox": [0.2, 0.1, 0.4, 0.5],
-            "fieldtype": "line_item_order_id",
-            "line_item_id": 3,
-            "score": 0.8,
-            "text": "Order 38",
-            "use_only_for_ap": true
-        },
-        "..."
-    ],
-    "docid2": [{"...": "..."}, "..."],
-    "..."
-}
+
+[{'questionId': '0017b64bd017f06db47e56a6a113e22e_bb55e0af451429f2dcae69e6d0713616',
+  'question': 'What is the first and last name of the indvidual in list # 539?',
+  'answers': ['Ajay Dev Goud'],
+  'answers_page_bounding_boxes': [[{'left': 353,
+     'top': 409,
+     'width': 198,
+     'height': 26,
+     'page': 8}]],
+  'answers_variants': [],
+  'answer_type': 'extractive',
+  'docId': '0017b64bd017f06db47e56a6a113e22e',
+  'data_split': 'train'}
+]
 ```
 Explanation of the individual fields of the predictions:
   * `page`: page index (from zero) the prediction belongs to
