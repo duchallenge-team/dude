@@ -3,12 +3,12 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-Repository to work with the [DUDE benchmark](https://rrc.cvc.uab.es/?ch=23&com=introduction), used in the ICDAR 2023 Competition on Document UnderstanDing of Everything.
-The competition deadline is on April 20, 2023 and comes with a **$1000 prize pool**.
+Shared repository to work with the [DUDE benchmark](https://rrc.cvc.uab.es/?ch=23&com=introduction), used in the ICDAR 2023 Competition on Document UnderstanDing of Everything.
+The competition deadline is on April 1, 2023 and might come with a **$XXX prize pool**.
 
-The repository consists of:
-* A framework, `dude`, making it easy to load the dataset, work with its annotations, pdfs and pre-computed OCR and run the evaluation.
-* An interactive [dataset browser notebook](dude/tools/dataset_notebook.ipynb) to visualize the document annotations, predictions and evaluation results.
+The repository collects a number of tools:
+* A data loader making it easy to load the dataset, work with its annotations, pdfs and pre-computed OCR
+* A repository that allows to test submission files and run standalome evaluation scripts.
 * Baseline methods (will appear soon).
 
 Table of Contents:
