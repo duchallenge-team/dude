@@ -72,10 +72,12 @@ def read_document(
 The dataset, the benchmark tasks and the evaluation criteria are described in detail in the [dataset paper](). To cite the dataset, please use the following BibTeX entry:
 ```
 @inproceedings{dude2023icdar,
-    title={ICDAR 2023 Challenge on Document UnderstanDing of Everything (DUDE)},
-    author={Van Landeghem, Jordy et al.},
+    title={ICDAR 2023 Competition on Document UnderstanDing of Everything (DUDE)},
+    author={Van Landeghem, Jordy, Łukasz Borchmann, Rubèn Tito, Michał Pietruszka, Dawid Jurkiewicz, Rafał Powalski, Sanket Biswat, Mickaël Coustaty and Tomasz Stanisławek},
     booktitle={Proceedings of the ICDAR 2023},
     year={2023}
 }
 
 ```
+
+# Announcements
