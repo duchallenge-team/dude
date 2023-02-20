@@ -36,6 +36,9 @@ ds = load_dataset("jordyvl/DUDE_loader", 'Amazon_original', data_dir="/DUDE_trai
 
 The second argument loads a specific OCR configuration; have a look at `DUDEConfig` to understand how to call different versions. 
 
+Additionally, the data loader repository includes a script to convert a dataset to the ImDB format, popularly used in visual question answering benchmarks.
+
+
 ## Predictions format and running evaluation
 
 Check out our standalone repository which explains it all: https://github.com/Jordy-VL/DUDEeval 
