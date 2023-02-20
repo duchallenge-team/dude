@@ -4,7 +4,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 Shared repository to work with the [DUDE benchmark](https://rrc.cvc.uab.es/?ch=23&com=introduction), used in the ICDAR 2023 Competition on Document UnderstanDing of Everything.
-The competition deadline is on April 1, 2023 and might come with a **$XXX prize pool**.
+The competition deadline is on April 1, 2023. Be sure to check the RRC platform for the latest updates, replicated here under [Announcements](#announcements).
 
 The repository collects a number of tools:
 * A data loader making it easy to load the dataset, work with its annotations, pdfs and pre-computed OCR
@@ -26,7 +26,7 @@ You can also download the binaries (PDF & OCR) and unzip in a custom `data_dir`.
 
 ## Load the dataset
 
-The suggested way to load the dataset is to start from https://huggingface.co/datasets/jordyvl/DUDE_loader
+The suggested way to load the dataset is to start from [https://huggingface.co/datasets/jordyvl/DUDE_loader](https://huggingface.co/datasets/jordyvl/DUDE_loader)
 
 ```python
 from datasets import load_dataset
