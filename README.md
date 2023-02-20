@@ -13,7 +13,6 @@ The repository collects a number of tools:
 
 Table of Contents:
 * [Download instructions](#download-dude)
-* [Installation](#installation)
 * [Predictions format and running evaluation](#predictions-format-and-running-evaluation)
 * [Pre-computed OCR](#pre-computed-ocr)
 * [Development instructions](#development-instructions)
@@ -23,113 +22,62 @@ Also check [Tutorials](tutorials/) to get quickly started with the repo.
 
 ## Download the dataset
 
-First you need to obtain a secret token by following the instructions at https://docile.rossum.ai/. Then download and unzip the dataset by running:
-```bash
+The dataset is publicly available by following the links in https://rrc.cvc.uab.es/?ch=23&com=downloads.
+This requires you to register on the RRC platform, only so that we can keep track of how many particpants are interested in our competition.
+You can also download the binaries (PDF & OCR) and unzip in a custom `data_dir`.
 
-TO BE DONE
 
+## Load the dataset
+
+The suggested way to load the dataset is to start from https://huggingface.co/datasets/jordyvl/DUDE_loader
+
+```python
+from datasets import load_dataset
+ds = load_dataset("jordyvl/DUDE_loader", 'Amazon_original') #automatically downloads binaries tar and extracts to HF_CACHE
+ds = load_dataset("jordyvl/DUDE_loader", 'Amazon_original', data_dir="/DUDE_train-val-test_binaries") #with custom extracted data directory
 ```
 
-Run `./download_dataset.sh --help` for more options, including how to only show urls (to download
-with a different tool than curl), how to download smaller unlabeled/synthetic chunks or unlabeled
-dataset without pdfs (with pre-computed OCR only).
-
-You can also work with the zipped datasets when you turn off image caching (check [Load and sample dataset](tutorials/load_and_sample_dataset.md) tutorial for details).
-
-## Installation
-
-### Install as a library
-To install just the library, download the wheel from the [latest release on github](https://github.com/rossumai/docile/releases) and run:
-```shell
-pip install docile-0.1.0-py3-none-any.whl
-```
-
-To convert pdfs into images, the library uses https://github.com/Belval/pdf2image. On linux you might need to install:
-```shell
-apt install poppler-utils
-```
-And on macOS:
-
-```shell
-brew install poppler
-```
-
-Now you have all dependencies to work with the dataset annotations, pdfs, pre-comptued OCR and to run the evaluation. You can install extra dependencies by running the following (although using one of the provided dockerfiles, as explained below, might be easier in this case):
-```shell
-pip install "docile-0.1.0-py3-none-any.whl[interactive]"
-pip install "docile-0.1.0-py3-none-any.whl[ocr]"
-```
-
-The first line installs additional dependencies allowing you to use the interactive dataset browser in [docile/tools/dataset_browser.py](docile/tools/dataset_browser.py) and the [tutorials](tutorials/). The second line let's you rerun the OCR predictions from scratch (e.g., if you'd like to run it with different parameters) but to make it work, you might need additional dependencies on your system. Check https://github.com/mindee/doctr for the installation instructions (for pytorch).
-
-
+The second argument loads a specific OCR configuration; have a look at `DUDEConfig` to understand how to call different versions. 
 
 ## Predictions format and running evaluation
 
-To evaluate predictions for tasks KILE or LIR, use the following command:
-```bash
-docile_evaluate \
-  --task LIR \
-  --dataset-path path/to/dataset[.zip] \
-  --split val \
-  --predictions path/to/predictions.json \
-  --evaluate-x-shot-subsets "0,1-3,4+" \  # default, show evaluation for 0-shot, few-shot and many-shot layout clusters
-  --evaluate-synthetic-subsets \  # optional, show evaluation on layout clusters with available synthetic data
-  --evaluate-fieldtypes \  # optional, show breakdown per fieldtype
-  --evaluate-also-text \  # optional
-  --store-evaluation-result LIR_val_eval.json  # optional, it can be loaded in the dataset browser
-```
-
-Run `docile_evaluate --help` for more information on the options. You can also run `docile_print_evaluation_report --evaluation-result-path LIR_val_eval.json` to print the results of a previously computed evaluation.
-
-Predictions need to be stored in a single json file (for each task separately) containing a mapping from `docid` to the 'questionId' predictions for that document, i.e.:
-```python
-
-{'questionId': '0017b64bd017f06db47e56a6a113e22e_bb55e0af451429f2dcae69e6d0713616',
-  'question': 'What is the first and last name of the indvidual in list # 539?',
-  'answers': ['Ajay Dev Goud'],
-  'answers_page_bounding_boxes': [[{'left': 353,
-     'top': 409,
-     'width': 198,
-     'height': 26,
-     'page': 8}]],
-  'answers_variants': [],
-  'answer_type': 'extractive',
-  'docId': '0017b64bd017f06db47e56a6a113e22e',
-  'data_split': 'train'}
-```
-Explanation of the individual fields of the predictions:
-  * `page`: page index (from zero) the prediction belongs to
-  * `bbox`: relative coordinates (from 0 to 1) representing the `left`, `top`, `right`, `bottom` sides of the bbox, respectively
-  * `fieldtype`: the fieldtype (sometimes called category or key) of the prediction
-  * `line_item_id`: ID of the line item. This should be a different number for each line item, the order does not matter. Omit for KILE predictions.
-  * `score` [optional]: the confidence for this prediction, can be omitted (in that case predictions are taken in the order in which they are stored in the list)
-  * `text` [optional]: text of the prediction, evaluated in a secondary metric only (when `--evaluate-also-text` is used)
-  * `use_only_for_ap` [optional, default is False]: only use the prediction for AP metric computation, not for f1, precision and recall (useful for less confident predictions).
-
-You can use `docile.dataset.store_predictions` to store predictions represented with the `docile.dataset.Field` class to a json file with the required format.
+Check out our standalone repository which explains it all: https://github.com/Jordy-VL/DUDEeval 
 
 ## Pre-computed OCR
 
-Pre-computed OCR is provided with the dataset. The prediction was done using the [DocTR](https://github.com/mindee/doctr) library. On top of that, word boxes were snapped to text (check the code in [docile/dataset/document_ocr.py](docile/dataset/document_ocr.py)). These snapped word boxes are used in evaluation (description of the evaluation is coming soon).
+We provide OCR outputs to help participants of DUDE. Note it is not required to use the attached OCRs, and you can use your own preferred OCR service (as long as you mention it with your submission). 
 
-While this should not be needed, it is possible to (re)generate OCR from scratch (including the snapping) with the provided `Dockerfile.gpu`. Just delete `DATASET_PATH/ocr` directory and then access the ocr for each document and page with `doc.ocr.get_all_words(page, snapped=True)`.
+Specifically, available provided OCRs include outputs of:
+* Azure Cognitive Services (3.2)
+* Amazon Textract (2018-06-27)
+* Tesseract (5.3.0)
 
-## Development instructions
+The output of Azure and Amazon OCRs was obtained from the PDF files. Since Tesseract does not support PDF inputs, we converted them to TIFFs (200 dpi) before running the process. There were three files where this process failed due to format limitations.
 
-For development, install [poetry](https://python-poetry.org/docs/) and run `poetry install`. Start a shell with the virtual environment activated with `poetry shell`. No other dependencies are needed to run pre-commit and the tests. It's recommended to use docker (as explained above) if you need the extra (interactive or ocr) dependencies.
+In addition to software-specific outputs (_original), we provide OCRs in the unified form (_due) introduced by the authors of DUE Benchmark (https://github.com/due-benchmark). Please find a toy reader for any of these below: 
 
-Install pre-commit with `pre-commit install` (don't forget you need to prepend all commands with `poetry run ...` if you did not run `poetry shell` first).
+```
+import json
+from typing import Dict, List, Tuple, Literal
+def read_document(
+        file_id: str,
+        subset: Literal['train', 'val', 'test'] = 'train',
+        ocr_engine: Literal['Azure', 'Amazon', 'Tesseract'] = 'Azure'
+    ) -> Tuple[List[Image], Dict]:
 
-Run tests by calling `pytest tests`.
+    # Read OCR results in DUE format
+    with open(f'OCR/{ocr_engine}/{file_id}_due.json') as ins:
+        data: Dict = json.load(ins)
+```
 
-## Dataset and benchmark paper
-The dataset, the benchmark tasks and the evaluation criteria are described in detail in the [dataset paper](https://arxiv.org/abs/2302.05658). To cite the dataset, please use the following BibTeX entry:
+
+## Dataset and benchmark paper (incoming)
+The dataset, the benchmark tasks and the evaluation criteria are described in detail in the [dataset paper](). To cite the dataset, please use the following BibTeX entry:
 ```
 @inproceedings{dude2023icdar,
     title={ICDAR 2023 Challenge on Document UnderstanDing of Everything (DUDE)},
-    author={Van Landeghem, Jordy et . al.},
-    booktitle={Proceedings of the ICDAR},
+    author={Van Landeghem, Jordy et al.},
+    booktitle={Proceedings of the ICDAR 2023},
     year={2023}
 }
 
