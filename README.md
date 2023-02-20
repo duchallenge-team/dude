@@ -15,10 +15,7 @@ Table of Contents:
 * [Download instructions](#download-dude)
 * [Predictions format and running evaluation](#predictions-format-and-running-evaluation)
 * [Pre-computed OCR](#pre-computed-ocr)
-* [Development instructions](#development-instructions)
 * [Dataset and benchmark paper](#dataset-and-benchmark-paper)
-
-Also check [Tutorials](tutorials/) to get quickly started with the repo.
 
 ## Download the dataset
 
@@ -71,7 +68,7 @@ def read_document(
 ```
 
 
-## Dataset and benchmark paper (incoming)
+## Dataset and benchmark paper (under progress)
 The dataset, the benchmark tasks and the evaluation criteria are described in detail in the [dataset paper](). To cite the dataset, please use the following BibTeX entry:
 ```
 @inproceedings{dude2023icdar,
