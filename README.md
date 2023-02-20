@@ -76,7 +76,7 @@ The dataset, the benchmark tasks and the evaluation criteria are described in de
 ```
 @inproceedings{dude2023icdar,
     title={ICDAR 2023 Competition on Document UnderstanDing of Everything (DUDE)},
-    author={Van Landeghem, Jordy, Łukasz Borchmann, Rubèn Tito, Michał Pietruszka, Dawid Jurkiewicz, Rafał Powalski, Sanket Biswat, Mickaël Coustaty and Tomasz Stanisławek},
+    author={Van Landeghem, Jordy, Łukasz Borchmann, Rubèn Tito, Michał Pietruszka, Dawid Jurkiewicz, Rafał Powalski, Sanket Biswas, Mickaël Coustaty and Tomasz Stanisławek},
     booktitle={Proceedings of the ICDAR 2023},
     year={2023}
 }
