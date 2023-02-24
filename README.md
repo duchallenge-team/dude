@@ -1,4 +1,3 @@
-
 # DUDE: Document UnderstanDing of Everything Benchmark
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -7,8 +6,8 @@ Shared repository to work with the [DUDE benchmark](https://rrc.cvc.uab.es/?ch=2
 The competition deadline is on April 1, 2023. Be sure to check the RRC platform for the latest updates, replicated here under [Announcements](#announcements).
 
 The repository collects a number of tools:
-* A data loader making it easy to load the dataset, work with its annotations, pdfs and pre-computed OCR
-* A repository that allows to test submission files and run standalome evaluation scripts.
+* A data loader making it easy to load the dataset, work with its annotations, pdfs, and pre-computed OCR
+* A repository that allows testing submission files and running standalone evaluation scripts.
 * Baseline methods (will appear soon).
 
 Table of Contents:
@@ -20,7 +19,7 @@ Table of Contents:
 ## Download the dataset
 
 The dataset is publicly available by following the links in https://rrc.cvc.uab.es/?ch=23&com=downloads.
-This requires you to register on the RRC platform, only so that we can keep track of how many particpants are interested in our competition.
+This requires you to register on the RRC platform, only so that we can keep track of how many participants are interested in our competition.
 You can also download the binaries (PDF & OCR) and unzip in a custom `data_dir`.
 
 
@@ -34,18 +33,18 @@ ds = load_dataset("jordyvl/DUDE_loader", 'Amazon_original') #automatically downl
 ds = load_dataset("jordyvl/DUDE_loader", 'Amazon_original', data_dir="/DUDE_train-val-test_binaries") #with custom extracted data directory
 ```
 
-The second argument loads a specific OCR configuration; have a look at `DUDEConfig` to understand how to call different versions. 
+The second argument loads a specific OCR configuration; have a look at `DUDEConfig` to understand how to call different versions.
 
 Additionally, the data loader repository includes a script to convert a dataset to the ImDB format, popularly used in visual question answering benchmarks.
 
 
 ## Predictions format and running evaluation
 
-Check out our standalone repository which explains it all: https://github.com/Jordy-VL/DUDEeval 
+Check out our standalone repository which explains it all: https://github.com/Jordy-VL/DUDEeval
 
 ## Pre-computed OCR
 
-We provide OCR outputs to help participants of DUDE. Note it is not required to use the attached OCRs, and you can use your own preferred OCR service (as long as you mention it with your submission). 
+We provide OCR outputs to help participants of DUDE. Note it is not required to use the attached OCRs, and you can use your own preferred OCR service (as long as you mention it with your submission).
 
 Specifically, available provided OCRs include outputs of:
 * Azure Cognitive Services (3.2)
@@ -54,7 +53,7 @@ Specifically, available provided OCRs include outputs of:
 
 The output of Azure and Amazon OCRs was obtained from the PDF files. Since Tesseract does not support PDF inputs, we converted them to TIFFs (200 dpi) before running the process. There were three files where this process failed due to format limitations.
 
-In addition to software-specific outputs (_original), we provide OCRs in the unified form (_due) introduced by the authors of DUE Benchmark (https://github.com/due-benchmark). Please find a toy reader for any of these below: 
+In addition to software-specific outputs (_original), we provide OCRs in the unified form (_due) introduced by the authors of DUE Benchmark (https://github.com/due-benchmark). Please find a toy reader for any of these below:
 
 ```
 import json
@@ -72,11 +71,11 @@ def read_document(
 
 
 ## Dataset and benchmark paper (under progress)
-The dataset, the benchmark tasks and the evaluation criteria are described in detail in the [dataset paper](). To cite the dataset, please use the following BibTeX entry:
+The dataset, the benchmark tasks, and the evaluation criteria are described in detail in the [dataset paper](). To cite the dataset, please use the following BibTeX entry:
 ```
 @inproceedings{dude2023icdar,
     title={ICDAR 2023 Competition on Document UnderstanDing of Everything (DUDE)},
-    author={Van Landeghem, Jordy, Łukasz Borchmann, Rubèn Tito, Michał Pietruszka, Dawid Jurkiewicz, Rafał Powalski, Sanket Biswas, Mickaël Coustaty and Tomasz Stanisławek},
+    author={Van Landeghem, Jordy, Łukasz Borchmann, Rubèn Tito, Michał Pietruszka, Dawid Jurkiewicz, Rafał Powalski, Paweł Józiak, Sanket Biswas, Mickaël Coustaty and Tomasz Stanisławek},
     booktitle={Proceedings of the ICDAR 2023},
     year={2023}
 }
@@ -84,3 +83,5 @@ The dataset, the benchmark tasks and the evaluation criteria are described in de
 ```
 
 # Announcements
+
+FYI, see discussions tab :)
