@@ -1,6 +1,17 @@
 # Announcements
 
-(Feb 28 2023: submission schedule update)
+(March 27: Extended Submission Deadline)
+
+Due to a postponed deadline for the ICDAR competition report, we can offer more time for participants to submit solutions to DUDE. 
+
+This makes the final (HARD) deadline for DUDE participant submissions: *Thursday 20 April.*
+We hope this extended deadline gives participants some room to further polish their solutions and claim their places on the leaderboard. 
+
+Cheers,
+
+The DUDEs
+
+(Feb 28 2023: Submission Schedule Update)
 
 Dear participants, 
 
