@@ -3,7 +3,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 Shared repository to work with the [DUDE benchmark](https://rrc.cvc.uab.es/?ch=23&com=introduction), used in the ICDAR 2023 Competition on Document UnderstanDing of Everything.
-The competition deadline is on April 1, 2023. Be sure to check the RRC platform for the latest updates, replicated here under [Announcements](#announcements).
+The competition deadline is on April 20, 2023. Be sure to check the RRC platform for the latest updates, replicated here under [Announcements](#announcements).
 
 The repository collects a number of tools:
 * A data loader making it easy to load the dataset, work with its annotations, pdfs, and pre-computed OCR
